@@ -59,9 +59,7 @@
     <Compile Include="Activator.cs" />
     <Compile Include="AppService\AccountAppService.cs" />
     <Compile Include="AppService\UserRUIDAppService.cs" />
-    <Compile Include="Domain\DomainModel\AccountDomain.cs" />
-    <Compile Include="Domain\DomainModel\UserDomain.cs" />
-    <Compile Include="Domain\DomainService\UserRUIDService.cs" />
+    <Compile Include="Domain\DomainModel\UserRootDomain.cs" />
     <Compile Include="Domain\IRepostory\IRepostoryAccount.cs" />
     <Compile Include="Domain\IRepostory\IRepostoryUserRUID.cs" />
     <Compile Include="IAccountAppService.cs" />
@@ -90,7 +88,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Domain\DomainService\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
