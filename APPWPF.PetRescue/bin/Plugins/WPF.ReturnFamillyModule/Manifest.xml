@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Bundle xmlns="urn:uiosp-bundle-manifest-2.0" Name="WPF.ReturnFamillyModule" SymbolicName="WPF.ReturnFamillyModule" Version="1.0.0.0" InitializedState="Active" StartLevel="5">
+  <Activator Type="WPF.ReturnFamillyModule.Activator" Policy="Immediate" />
+  <Runtime>
+    <Assembly Path="bin\WPF.ReturnFamillyModule.dll" Share="false" MultipleVersions="false" />
+  </Runtime>
+  <Extension Point="UIShell.WpfShellPlugin.LinkGroups">
+    <LinkGroup DisplayName="爱宠领养" DefaultContentSource="WPF.ReturnFamillyModule.UserControl1">
+      <Link DisplayName="办理领养" Source="WPF.ReturnFamillyModule.UserControl1" />
+      <Link DisplayName="办理退养" Source="WPF.ReturnFamillyModule.UserControl1" />
+    </LinkGroup>
+  </Extension>
+</Bundle>

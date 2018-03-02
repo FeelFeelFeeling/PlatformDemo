@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Bundle xmlns="urn:uiosp-bundle-manifest-2.0" Name="模块：权限管理" SymbolicName="WPF.PowerModule" Version="1.0.0.0" InitializedState="Active" StartLevel="20">
+  <Activator Type="WPF.PowerModule.Activator" Policy="Immediate" />
+  <Runtime>
+    <Assembly Path="bin\WPF.PowerModule.dll" Share="false" MultipleVersions="false" />
+    <Assembly Path="bin\FirstFloor.ModernUI.dll" Share="false" MultipleVersions="false" />
+    <Assembly Path="bin\Component.dll" Share="false" MultipleVersions="false" />
+    <Assembly Path="bin\Customer.dll" Share="false" MultipleVersions="false" />
+    <Assembly Path="bin\Newtonsoft.Json.dll" Share="false" MultipleVersions="false" />
+    <Assembly Path="bin\SystemService.IAccountService.dll" Share="false" MultipleVersions="false" />
+    <Assembly Path="bin\VirtualServer.PowerService.dll" Share="false" MultipleVersions="false" />
+  </Runtime>
+  <Extension Point="UIShell.WpfShellPlugin.LinkGroups">
+    <LinkGroup DisplayName="权限管理" DefaultContentSource="WPF.PowerModule.Pages.UserManager">
+      <Link DisplayName="用户维护" Source="WPF.PowerModule.Pages.UserManager" />
+      <Link DisplayName="用户授权" Source="WPF.PowerModule.Pages.UserSetPower" />
+    </LinkGroup>
+  </Extension>
+  <BundleInfo Category="权限管理" Description="针对用户的权限管理" Author="MrWZJ" Copyright="个人" />
+</Bundle>

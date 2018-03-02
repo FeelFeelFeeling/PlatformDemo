@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Bundle xmlns="urn:uiosp-bundle-manifest-2.0" Name="SystemService.IAccountService" SymbolicName="SystemService.IAccountService" Version="1.0.0.0" InitializedState="Active" StartLevel="2">
+  <Activator Type="SystemService.IAccountService.Activator" Policy="Immediate" />
+  <Runtime>
+    <Assembly Path="bin\SystemService.IAccountService.dll" Share="true" MultipleVersions="false" />
+    <Assembly Path="bin\Customer.dll" Share="false" MultipleVersions="false" />
+  </Runtime>
+</Bundle>

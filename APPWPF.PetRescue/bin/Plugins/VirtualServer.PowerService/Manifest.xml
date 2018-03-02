@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Bundle xmlns="urn:uiosp-bundle-manifest-2.0" Name="VirtualServer.PowerService" SymbolicName="VirtualServer.PowerService" Version="1.0.0.0" InitializedState="Active" StartLevel="2">
+  <Activator Type="VirtualServer.PowerService.Activator" Policy="Immediate" />
+  <Runtime>
+    <Assembly Path="bin\VirtualServer.PowerService.dll" Share="true" MultipleVersions="false" />
+  </Runtime>
+</Bundle>

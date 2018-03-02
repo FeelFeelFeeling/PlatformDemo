@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Bundle xmlns="urn:uiosp-bundle-manifest-2.0" Name="WPF.MoneyModule" SymbolicName="WPF.MoneyModule" Version="1.0.0.0" InitializedState="Active" StartLevel="3">
+  <Activator Type="WPF.MoneyModule.Activator" Policy="Immediate" />
+  <Runtime>
+    <Assembly Path="bin\WPF.MoneyModule.dll" Share="false" MultipleVersions="false" />
+  </Runtime>
+  <Extension Point="UIShell.WpfShellPlugin.LinkGroups">
+    <LinkGroup DisplayName="捐款收支" DefaultContentSource="WPF.MoneyModule.UserControl1">
+      <Link DisplayName="收取" Source="WPF.MoneyModule.UserControl1" />
+      <Link DisplayName="支出" Source="WPF.MoneyModule.UserControl1" />
+    </LinkGroup>
+  </Extension>
+</Bundle>

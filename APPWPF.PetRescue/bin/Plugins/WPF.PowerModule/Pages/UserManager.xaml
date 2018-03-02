@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="WPF.PowerModule.Pages.UserManager"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:core="clr-namespace:System;assembly=mscorlib"
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"             
+             xmlns:ls="clr-namespace:FirstFloor.ModernUI.Presentation"
+             xmlns:local="clr-namespace:WPF.PowerModule.ViewModel"
+             xmlns:showMessage="clr-namespace:Component.ShowMessage;assembly=Component"
+             xmlns:pageState="clr-namespace:Component.PageState;assembly=Component"
+             xmlns:pagination="clr-namespace:Component.Pagination;assembly=Component"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800"
+             x:Name="mainModule">
+
+    <Grid x:Name="maingrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <!--检索条件栏-->
+        <ScrollViewer Grid.Column="0">
+            <!--<GroupBox Header="检索条件：" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="DarkGray" Margin="5" Height="120px">-->
+            <StackPanel HorizontalAlignment="Left" Margin="0,20,0,0">
+                <StackPanel Orientation="Horizontal" Margin="5,10,10,0">
+                    <TextBlock Text="账号："/>
+                    <TextBox x:Name="s_loginid" Width="140" Text="{Binding LoginId, ElementName=viewModel, Mode=TwoWay}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,10,10,0">
+                    <TextBlock Text="姓名："/>
+                    <TextBox x:Name="s_name" Width="140" Text="{Binding UserName, ElementName=viewModel, Mode=TwoWay}"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right" Margin="5,10,10,5">
+                    <mui:ModernButton x:Name="s_search" Content="搜索" HorizontalAlignment="Center" Margin="0,0,0,0" 
+						Command="{Binding SearchCmd, ElementName=viewModel}"
+						IconData="F1 M 20.8259,20.8677C 26.3854,15.3083 35.3992,15.3083 40.9586,20.8677C 45.9465,25.8556 46.4593,33.6239 42.4971,39.1835L 54.2252,50.9116C 54.67,51.3564 54.7301,52.0174 54.3595,52.3881L 52.3462,54.4012C 51.9756,54.7719 51.3146,54.7118 50.8698,54.267L 39.1417,42.5389C 33.5821,46.5011 25.8138,45.9883 20.8259,41.0004C 15.2665,35.4409 15.2665,26.4272 20.8259,20.8677 Z M 24.1814,24.2232C 20.4751,27.9296 20.4751,33.9387 24.1814,37.645C 27.8877,41.3513 33.8969,41.3513 37.6032,37.645C 41.3095,33.9387 41.3095,27.9296 37.6032,24.2232C 33.8969,20.5169 27.8877,20.5169 24.1814,24.2232 Z"/>
+                </StackPanel>
+            </StackPanel>
+            <!--</GroupBox>-->
+        </ScrollViewer>
+        <!--分隔符-->
+        <GridSplitter Grid.Column="1" />
+        <!--信息操作区-->
+        <mui:ModernFrame x:Name="mainFrame" Grid.Column="2">
+            <DockPanel VerticalAlignment="Top" Margin="5">
+                <StackPanel VerticalAlignment="Stretch">
+                    <!--功能操作区-->
+                    <StackPanel Orientation="Vertical" Margin="0">
+                        <!--信息操作主区-->
+                        <TextBlock DockPanel.Dock="Top" Text="系统用户信息列表" Margin="10,0,0,8" />
+                        <!--<GroupBox DockPanel.Dock="Top" Header="功能区：" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="DarkGray" Margin="5">-->
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5" Width="{DynamicResource {x:Static SystemParameters.VirtualScreenWidthKey}}">
+                            <mui:ModernButton x:Name="s_add"
+							Command="{Binding AddCmd, ElementName=viewModel}"
+                            CommandParameter="{Binding ElementName=mainFrame}"
+							Content="新增" HorizontalAlignment="Center" Margin="10,0,0,0" 
+							IconData="M 35,19L 41,19L 41,35L 57,35L 57,41L 41,41L 41,57L 35,57L 35,41L 19,41L 19,35L 35,35L 35,19 Z"/>
+                            <mui:ModernButton x:Name="s_modify" 
+							Command="{Binding ModifyCmd, ElementName=viewModel}"
+							Content="修改" HorizontalAlignment="Center" Margin="20,0,0,0"
+							IconData="M 53.2929,21.2929L 54.7071,22.7071C 56.4645,24.4645 56.4645,27.3137 54.7071,29.0711L 52.2323,31.5459L 44.4541,23.7677L 46.9289,21.2929C 48.6863,19.5355 51.5355,19.5355 53.2929,21.2929 Z M 31.7262,52.052L 23.948,44.2738L 43.0399,25.182L 50.818,32.9601L 31.7262,52.052 Z M 23.2409,47.1023L 28.8977,52.7591L 21.0463,54.9537L 23.2409,47.1023 Z"/>
+                            <mui:ModernButton x:Name="s_delete"
+							Command="{Binding DeleteCmd, ElementName=viewModel}"
+							Content="删除" HorizontalAlignment="Center" Margin="20,0,0,0"
+							IconData="M 25.3333,23.75L 50.6667,23.75C 51.5411,23.75 51.8541,27.3125 51.8541,27.3125L 24.1458,27.3125C 24.1458,27.3125 24.4589,23.75 25.3333,23.75 Z M 35.625,19.7917L 40.375,19.7917C 40.8122,19.7917 41.9583,20.9378 41.9583,21.375C 41.9583,21.8122 40.8122,22.9584 40.375,22.9584L 35.625,22.9584C 35.1878,22.9584 34.0416,21.8122 34.0416,21.375C 34.0416,20.9378 35.1878,19.7917 35.625,19.7917 Z M 27.7083,28.5L 48.2916,28.5C 49.1661,28.5 49.875,29.2089 49.875,30.0834L 48.2916,53.8334C 48.2916,54.7078 47.5828,55.4167 46.7083,55.4167L 29.2917,55.4167C 28.4172,55.4167 27.7083,54.7078 27.7083,53.8334L 26.125,30.0834C 26.125,29.2089 26.8339,28.5 27.7083,28.5 Z M 30.0833,31.6667L 30.4792,52.25L 33.25,52.25L 32.8542,31.6667L 30.0833,31.6667 Z M 36.4167,31.6667L 36.4167,52.25L 39.5833,52.25L 39.5833,31.6667L 36.4167,31.6667 Z M 43.1458,31.6667L 42.75,52.25L 45.5208,52.25L 45.9167,31.6667L 43.1458,31.6667 Z"/>
+                            <mui:ModernButton x:Name="s_assignMenu"
+							Command="{Binding AssignMenuCmd, ElementName=viewModel}"
+                            CommandParameter=""
+							Content="分配菜单" HorizontalAlignment="Center" Margin="20,0,0,0" 
+							IconData="M 26.9193,36.4217L 31.6693,36.4217L 31.6693,44.3384L 39.586,44.3384L 39.586,49.0884L 31.6693,49.0884L 31.6693,57.0051L 26.9193,57.0051L 26.9193,49.0884L 19.0027,49.0884L 19.0027,44.3384L 26.9193,44.3384L 26.9193,36.4217 Z M 38.0053,19.0027L 57.0079,28.504L 38.0053,38.0053L 33.2529,35.6291L 33.2529,34.8382L 31.6711,34.8382L 19.0027,28.504L 38.0053,19.0027 Z M 57.0079,47.5066L 38.0053,57.008L 33.2529,54.6317L 33.2529,50.672L 38.0024,50.672L 38.0053,50.6737L 38.0088,50.672L 41.1693,50.672L 41.1694,49.0917L 50.6737,44.3395L 57.0079,47.5066 Z M 57.0079,38.0053L 41.1695,45.9245L 41.1695,42.7549L 38.0026,42.7549L 33.2529,42.7548L 33.2529,38.7962L 38.0053,41.1724L 50.6737,34.8382L 57.0079,38.0053 Z M 19.0027,38.0053L 25.336,34.8386L 25.3357,38.0053L 25.3358,41.1719L 19.0027,38.0053 Z"/>
+                        </StackPanel>
+                        <!--</GroupBox>-->
+                        <DataGrid x:Name="DG1" 
+						ItemsSource="{Binding ItemSource, ElementName=viewModel, UpdateSourceTrigger=PropertyChanged}"
+                        SelectionUnit="FullRow"
+						SelectedItem="{Binding SelectedItem, ElementName=viewModel, Mode=OneWayToSource}"
+						ScrollViewer.VerticalScrollBarVisibility="Visible" 
+						AutoGenerateColumns="False" VerticalAlignment="Top" HorizontalContentAlignment="Stretch"
+						IsReadOnly="True" CanUserAddRows="False" />
+                    </StackPanel>
+                    <!--公共分页控件-->
+                    <pagination:CustomerPagin x:Name="customerPagin"
+					ReloadCmd="{Binding SearchCmd, ElementName=viewModel}"
+					TotalInfoCount="{Binding TotalInfoCount, ElementName=viewModel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+					Page="{Binding PageCount, ElementName=viewModel, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+					Size="{Binding PageSize, ElementName=viewModel, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+            </DockPanel>
+        </mui:ModernFrame>
+        <!--自定义数据源控件；消息显示控件；页面状态响应控件-->
+        <local:UserManagerViewModel x:Name="viewModel"/>
+
+        <showMessage:CustomerShowMessage 
+            HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"
+            MessageInfo="{Binding ResultMessage,ElementName=viewModel, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+
+        <pageState:PageStateResponse
+            Grid.RowSpan="3" Grid.ColumnSpan="3"
+            VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+            PageState="{Binding ElementName=viewModel,Path=PageState,UpdateSourceTrigger=PropertyChanged}"/>
+    </Grid>
+
+</UserControl>

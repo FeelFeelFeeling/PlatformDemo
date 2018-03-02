@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Bundle xmlns="urn:uiosp-bundle-manifest-2.0" Name="WPF.SalvationModule" SymbolicName="WPF.SalvationModule" Version="1.0.0.0" InitializedState="Active" StartLevel="4">
+  <Activator Type="WPF.SalvationModule.Activator" Policy="Immediate" />
+  <Runtime>
+    <Assembly Path="bin\WPF.SalvationModule.dll" Share="false" MultipleVersions="false" />
+  </Runtime>
+  <Extension Point="UIShell.WpfShellPlugin.LinkGroups">
+    <LinkGroup DisplayName="救援行动" DefaultContentSource="WPF.SalvationModule.UserControl1">
+      <Link DisplayName="进行中" Source="WPF.SalvationModule.UserControl1" />
+      <Link DisplayName="已结束" Source="WPF.SalvationModule.UserControl1" />
+      <Link DisplayName="发起救援" Source="WPF.SalvationModule.UserControl1" />
+    </LinkGroup>
+  </Extension>
+</Bundle>
